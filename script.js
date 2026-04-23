@@ -4,7 +4,11 @@ const CLAVE_PEDIDOS = 'cafeteria_pedidos';
 const CLAVE_SESION = 'cafeteria_sesion';
 const CLAVE_CARRITO = 'cafeteria_carrito';
 
-const PAGINA_ACTUAL = window.location.pathname.split('/').pop() || 'login.html';
+let PAGINA_ACTUAL = window.location.pathname.split('/').pop();
+
+if (PAGINA_ACTUAL === '') {
+  PAGINA_ACTUAL = 'login.html';
+}
 
 function elemento(id) {
   return document.getElementById(id);
@@ -200,26 +204,27 @@ function protegerPaginas() {
   if (PAGINA_ACTUAL === 'login.html') {
     if (sesion) {
       if (sesion.rol === 'administrador') {
-        window.location.href = 'admin.html';
+        window.location.replace('admin.html');
       } else {
-        window.location.href = 'index.html';
+        window.location.replace('index.html');
       }
     }
     return;
   }
 
   if (!sesion) {
-    window.location.href = 'login.html';
+    window.location.replace('login.html');
     return;
   }
 
   if (PAGINA_ACTUAL === 'admin.html' && sesion.rol !== 'administrador') {
-    window.location.href = 'index.html';
+    window.location.replace('index.html');
     return;
   }
 
   if (PAGINA_ACTUAL === 'index.html' && sesion.rol !== 'cliente') {
-    window.location.href = 'admin.html';
+    window.location.replace('admin.html');
+    return;
   }
 }
 
@@ -827,10 +832,10 @@ function registrarEventos() {
       this.reset();
 
       if (usuario.rol === 'administrador') {
-        window.location.href = 'admin.html';
-      } else {
-        window.location.href = 'index.html';
-      }
+        window.location.replace('admin.html');
+        } else {
+        window.location.replace('index.html');
+        }
     });
   }
 
