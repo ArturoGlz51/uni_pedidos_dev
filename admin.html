@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrador | UniPedidos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="barra">
+    <div class="contenedor barra-contenido">
+      <div class="marca">UniPedidos</div>
+
+      <nav class="nav">
+        <a href="#administrador">Administrador</a>
+        <button id="botonCerrarSesion" class="boton-nav">Cerrar sesión</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="principal">
+    <section class="contenedor" id="administrador">
+      <div class="hero-admin">
+        <div class="hero-principal">
+          <span class="etiqueta">Panel del administrador</span>
+          <h1>Gestión del sistema</h1>
+          <p>
+            Administra los productos registrados, supervisa los pedidos del sistema
+            y actualiza el estado de atención de cada orden.
+          </p>
+        </div>
+
+        <div class="hero-lateral">
+          <div class="tarjeta tarjeta-info">
+            <h3>Sesión activa</h3>
+            <div class="barra-sesion barra-sesion-interna">
+              <div id="textoSesion">No has iniciado sesión.</div>
+              <div id="textoRol"></div>
+            </div>
+          </div>
+
+          <div class="tarjeta tarjeta-info">
+            <h3>Acciones disponibles</h3>
+            <ul class="lista-simple">
+              <li>Agregar productos</li>
+              <li>Editar productos</li>
+              <li>Eliminar o reactivar</li>
+              <li>Cambiar estado de pedidos</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="rejilla-metricas espacio-arriba">
+        <div class="tarjeta-metrica">
+          <div class="icono-metrica">⏳</div>
+          <div>
+            <span class="titulo-metrica">Pedidos pendientes</span>
+            <strong id="metricaPendientesAdmin">0</strong>
+          </div>
+        </div>
+
+        <div class="tarjeta-metrica">
+          <div class="icono-metrica">✅</div>
+          <div>
+            <span class="titulo-metrica">Pedidos entregados</span>
+            <strong id="metricaEntregadosAdmin">0</strong>
+          </div>
+        </div>
+
+        <div class="tarjeta-metrica">
+          <div class="icono-metrica">🍔</div>
+          <div>
+            <span class="titulo-metrica">Productos activos</span>
+            <strong id="metricaProductosActivosAdmin">0</strong>
+          </div>
+        </div>
+
+        <div class="tarjeta-metrica">
+          <div class="icono-metrica">👤</div>
+          <div>
+            <span class="titulo-metrica">Clientes registrados</span>
+            <strong id="metricaClientesAdmin">0</strong>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="titulo-seccion espacio-arriba">Módulo del administrador</h2>
+
+      <div class="rejilla-2">
+        <div class="tarjeta tarjeta-seccion">
+          <div class="encabezado-seccion">
+            <div>
+              <h3>Registro y edición de productos</h3>
+              <p>Captura la información del producto y actualiza el catálogo disponible.</p>
+            </div>
+          </div>
+
+          <form id="formularioProducto">
+            <input type="hidden" id="idProductoEditar">
+
+            <div class="grupo-campo">
+              <label>Nombre del producto</label>
+              <input type="text" class="campo" id="nombreProducto" placeholder="Galletas de Avena" required>
+            </div>
+
+            <div class="grupo-campo">
+              <label>Descripción</label>
+              <textarea class="area-texto" id="descripcionProducto" rows="3" placeholder="Deliciosas galletas de avena con trozos de chocolate" required></textarea>
+            </div>
+
+            <div class="grupo-campo">
+              <label>Precio</label>
+              <input type="number" class="campo" id="precioProducto" step="0.01" min="1" placeholder="Ejemplo: 15.99" required>
+            </div>
+
+            <div class="grupo-campo">
+              <label>Categoría</label>
+              <input type="text" class="campo" id="categoriaProducto" placeholder="Ejemplo: Postres" required>
+            </div>
+
+            <div class="grupo-campo">
+              <label>URL de imagen</label>
+              <input type="text" class="campo" id="imagenProducto" placeholder="https://example.com/imagen.jpg" required>
+            </div>
+
+            <div class="acciones">
+              <button type="submit" class="btn btn-primario">Guardar producto</button>
+              <button type="button" class="btn btn-secundario" id="botonCancelarEdicion">Cancelar edición</button>
+            </div>
+
+            <div class="mensaje" id="mensajeProducto"></div>
+          </form>
+        </div>
+
+        <div class="tarjeta tarjeta-seccion">
+          <div class="encabezado-seccion">
+            <div>
+              <h3>Productos registrados</h3>
+              <p>Consulta el catálogo actual y administra su disponibilidad.</p>
+            </div>
+          </div>
+
+          <div class="tabla-simple tabla-elegante">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Categoría</th>
+                  <th>Precio</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="tablaProductos"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="tarjeta tarjeta-seccion espacio-arriba">
+        <div class="encabezado-seccion">
+          <div>
+            <h3>Pedidos del sistema</h3>
+            <p>Monitorea los pedidos realizados y actualiza su estado.</p>
+          </div>
+        </div>
+
+        <div class="tabla-simple tabla-elegante">
+          <table>
+            <thead>
+              <tr>
+                <th>Folio</th>
+                <th>Cliente</th>
+                <th>Total</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody id="tablaPedidosAdmin"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    Panel del administrador - Primera versión del sistema.
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cliente | UniPedidos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="barra">
+    <div class="contenedor barra-contenido">
+      <div class="marca">UniPedidos</div>
+
+      <nav class="nav">
+        <a href="#inicio">Inicio</a>
+        <a href="#cliente">Menú</a>
+        <button id="botonCerrarSesion" class="boton-nav">Cerrar sesión</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="principal">
+    <section class="contenedor" id="inicio">
+      <div class="hero-cliente">
+        <div class="hero-principal">
+          <span class="etiqueta">Panel del cliente</span>
+          <h1>Realiza tu pedido sin hacer fila</h1>
+          <p>
+            Explora el menú, agrega productos a tu carrito, elige tu ubicación de entrega
+            dentro del campus y confirma tu pedido de forma rápida.
+          </p>
+
+          <div class="acciones">
+            <a href="#cliente" class="btn btn-primario">Ir al menú</a>
+          </div>
+        </div>
+
+        <div class="hero-lateral">
+          <div class="tarjeta tarjeta-info">
+            <h3>Sesión activa</h3>
+            <div class="barra-sesion barra-sesion-interna">
+              <div id="textoSesion">No has iniciado sesión.</div>
+              <div id="textoRol"></div>
+            </div>
+          </div>
+
+          <div class="tarjeta tarjeta-info">
+            <h3>Flujo del pedido</h3>
+            <ul class="lista-simple">
+              <li>Explora el catálogo</li>
+              <li>Agrega productos al carrito</li>
+              <li>Selecciona tu ubicación</li>
+              <li>Confirma tu pedido</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="rejilla-metricas espacio-arriba">
+        <div class="tarjeta-metrica">
+          <div class="icono-metrica">🛒</div>
+          <div>
+            <span class="titulo-metrica">Productos en carrito</span>
+            <strong id="metricaCarrito">0</strong>
+          </div>
+        </div>
+
+        <div class="tarjeta-metrica">
+          <div class="icono-metrica">📦</div>
+          <div>
+            <span class="titulo-metrica">Mis pedidos</span>
+            <strong id="metricaMisPedidos">0</strong>
+          </div>
+        </div>
+
+        <div class="tarjeta-metrica">
+          <div class="icono-metrica">✅</div>
+          <div>
+            <span class="titulo-metrica">Pedidos entregados</span>
+            <strong id="metricaEntregados">0</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contenedor espacio-arriba" id="cliente">
+      <h2 class="titulo-seccion">Módulo del cliente</h2>
+
+      <div class="panel-cliente">
+        <div>
+          <div class="tarjeta tarjeta-seccion">
+            <div class="encabezado-seccion">
+              <div>
+                <h3>Visualización de menú</h3>
+                <p>Busca productos, filtra por categoría y ordénalos a tu gusto.</p>
+              </div>
+            </div>
+
+            <div class="filtros espacio-arriba">
+              <input type="text" class="campo" id="buscarProducto" placeholder="Buscar producto por nombre">
+
+              <select class="selector" id="filtrarCategoria"></select>
+
+              <select class="selector" id="ordenarProductos">
+                <option value="normal">Ordenar por</option>
+                <option value="menor">Precio menor</option>
+                <option value="mayor">Precio mayor</option>
+                <option value="calificacion">Mejor calificación</option>
+              </select>
+            </div>
+
+            <div class="lista-productos" id="listaProductos"></div>
+          </div>
+
+          <div class="tarjeta tarjeta-seccion espacio-arriba">
+            <div class="encabezado-seccion">
+              <div>
+                <h3>Historial de pedidos</h3>
+                <p>Aquí puedes revisar tus pedidos, su estado y las valoraciones realizadas.</p>
+              </div>
+            </div>
+
+            <div id="listaHistorial"></div>
+          </div>
+        </div>
+
+        <aside class="panel-flotante panel-resumen">
+          <div class="encabezado-panel-resumen">
+            <span class="etiqueta">Pedido actual</span>
+            <h3>Creación de pedido</h3>
+            <p>Revisa tu carrito antes de confirmar.</p>
+          </div>
+
+          <div class="lista-carrito" id="listaCarrito"></div>
+
+          <div class="fila fila-total-resumen">
+            <span>Total</span>
+            <span class="total-grande" id="textoTotal">$0.00</span>
+          </div>
+
+          <div class="grupo-campo espacio-arriba">
+            <label>Ubicación de entrega dentro del campus</label>
+            <select id="ubicacionPedido" class="selector">
+              <option value="">Selecciona una ubicación</option>
+              <option>Aula 1</option>
+              <option>Aula 2</option>
+              <option>Aula 3</option>
+              <option>Biblioteca</option>
+              <option>Laboratorio de Cómputo</option>
+              <option>Edificio Administrativo</option>
+              <option>Explanada Principal</option>
+              <option>Cancha</option>
+              <option>Estacionamiento</option>
+              <option>Centro de Idiomas</option>
+              <option>Otra ubicación</option>
+            </select>
+          </div>
+
+          <div class="grupo-campo oculto" id="grupoOtraUbicacion">
+            <label>Especifica la ubicación</label>
+            <input type="text" class="campo" id="otraUbicacionPedido" rows="3" placeholder="Ejemplo: Aula 4, junto a la entrada">
+          </div>
+
+          <div class="grupo-campo">
+            <label>Notas del pedido</label>
+            <textarea class="area-texto" id="notasPedido" rows="3" placeholder="Ejemplo: Entregar en la entrada principal"></textarea>
+          </div>
+
+          <div class="acciones acciones-columna">
+            <button class="btn btn-primario btn-ancho" id="botonConfirmarPedido">Confirmar pedido</button>
+            <button class="btn btn-secundario btn-ancho" id="botonVaciarCarrito">Vaciar carrito</button>
+          </div>
+
+          <div class="mensaje" id="mensajePedido"></div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    Panel del cliente - Primera versión del sistema.
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

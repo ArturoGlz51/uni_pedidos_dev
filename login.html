@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acceso | UniPedidos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="cuerpo-login">
+  <main class="pantalla-login">
+    <section class="contenedor-login">
+      <div class="rejilla-login">
+        <div class="panel-bienvenida-login">
+          <div class="marca-login">
+            <div class="logo-login">UP</div>
+            <div>
+              <span class="etiqueta etiqueta-clara">Primera versión funcional</span>
+              <h1>UniPedidos</h1>
+            </div>
+          </div>
+
+          <p class="texto-login">
+            Plataforma de pedidos digitales para cafetería universitaria.
+            Inicia sesión o crea tu cuenta para comenzar a usar el sistema.
+          </p>
+
+          <div class="lista-ventajas">
+            <div class="ventaja-login">
+              <div class="icono-ventaja">🛒</div>
+              <div>
+                <strong>Pedidos rápidos</strong>
+                <span>Realiza tu pedido sin hacer fila.</span>
+              </div>
+            </div>
+
+            <div class="ventaja-login">
+              <div class="icono-ventaja">📍</div>
+              <div>
+                <strong>Entrega en campus</strong>
+                <span>Selecciona tu ubicación dentro de la universidad.</span>
+              </div>
+            </div>
+
+            <div class="ventaja-login">
+              <div class="icono-ventaja">📦</div>
+              <div>
+                <strong>Gestión de pedidos</strong>
+                <span>Clientes y administradores trabajan en tiempo real.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="caja-credenciales caja-credenciales-clara">
+            <strong>Administrador inicial:</strong><br>
+            Correo: admin@campus.com<br>
+            Contraseña: admin123
+          </div>
+        </div>
+
+        <div class="panel-formularios-login">
+          <div class="tarjeta tarjeta-login">
+            <h2>Iniciar sesión</h2>
+
+            <form id="formularioInicioSesion">
+              <div class="grupo-campo">
+                <label>Correo electrónico</label>
+                <input type="email" class="campo" id="correoInicio" placeholder="tu@correo.com" required>
+              </div>
+
+              <div class="grupo-campo">
+                <label>Contraseña</label>
+                <input type="password" class="campo" id="contrasenaInicio" placeholder="Mínimo 8 caracteres" required>
+              </div>
+
+              <button type="submit" class="btn btn-primario btn-ancho">Entrar</button>
+              <div class="mensaje" id="mensajeInicio"></div>
+            </form>
+          </div>
+
+          <div class="tarjeta tarjeta-login">
+            <h2>Registro de cliente</h2>
+
+            <form id="formularioRegistro">
+              <div class="grupo-campo">
+                <label>Nombre completo</label>
+                <input type="text" class="campo" id="nombreRegistro" placeholder="Arturo Gonzalez" required>
+              </div>
+
+              <div class="grupo-campo">
+                <label>Correo electrónico</label>
+                <input type="email" class="campo" id="correoRegistro" placeholder="tu@correo.com" required>
+              </div>
+
+              <div class="grupo-campo">
+                <label>Contraseña</label>
+                <input type="password" class="campo" id="contrasenaRegistro" placeholder="Mínimo 8 caracteres" required>
+              </div>
+
+              <div class="grupo-campo">
+                <label>Teléfono</label>
+                <input type="text" class="campo" id="telefonoRegistro" placeholder="Ejemplo: 555-1234" required>
+              </div>
+
+              <div class="grupo-campo">
+                <label>Ubicación en campus</label>
+                <input type="text" class="campo" id="ubicacionRegistro" placeholder="Ejemplo: Aula 3 o Biblioteca">
+              </div>
+
+              <button type="submit" class="btn btn-secundario btn-ancho">Crear cuenta</button>
+              <div class="mensaje" id="mensajeRegistro"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
