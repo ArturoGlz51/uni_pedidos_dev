@@ -4,14 +4,15 @@ const CLAVE_PEDIDOS = 'cafeteria_pedidos';
 const CLAVE_SESION = 'cafeteria_sesion';
 const CLAVE_CARRITO = 'cafeteria_carrito';
 
-let PAGINA_ACTUAL = window.location.pathname.split('/').pop();
-
-if (PAGINA_ACTUAL === '') {
-  PAGINA_ACTUAL = 'login.html';
-}
+const PAGINA_ACTUAL = document.body.dataset.pagina || 'login';
 
 function elemento(id) {
   return document.getElementById(id);
+}
+
+function irA(pagina) {
+  const url = new URL(pagina, window.location.href);
+  window.location.replace(url.href);
 }
 
 function iniciarDatos() {
@@ -24,7 +25,7 @@ function iniciarDatos() {
         contrasena: 'admin123',
         telefono: '0000000000',
         ubicacion: 'Oficina',
-        rol: 'Administrador',
+        rol: 'administrador',
         activo: true
       }
     ];
@@ -160,7 +161,7 @@ function guardarCarrito(lista) {
 function cerrarSesion() {
   localStorage.removeItem(CLAVE_SESION);
   localStorage.setItem(CLAVE_CARRITO, JSON.stringify([]));
-  window.location.href = 'login.html';
+  irA('login.html');
 }
 
 function siguienteId(lista) {
@@ -201,29 +202,29 @@ function validarCorreo(correo) {
 function protegerPaginas() {
   const sesion = obtenerSesion();
 
-  if (PAGINA_ACTUAL === 'login.html') {
+  if (PAGINA_ACTUAL === 'login') {
     if (sesion) {
       if (sesion.rol === 'administrador') {
-        window.location.replace('admin.html');
+        irA('admin.html');
       } else {
-        window.location.replace('index.html');
+        irA('index.html');
       }
     }
     return;
   }
 
   if (!sesion) {
-    window.location.replace('login.html');
+    irA('login.html');
     return;
   }
 
-  if (PAGINA_ACTUAL === 'admin.html' && sesion.rol !== 'administrador') {
-    window.location.replace('index.html');
+  if (PAGINA_ACTUAL === 'admin' && sesion.rol !== 'administrador') {
+    irA('index.html');
     return;
   }
 
-  if (PAGINA_ACTUAL === 'index.html' && sesion.rol !== 'cliente') {
-    window.location.replace('admin.html');
+  if (PAGINA_ACTUAL === 'cliente' && sesion.rol !== 'cliente') {
+    irA('admin.html');
     return;
   }
 }
@@ -832,10 +833,10 @@ function registrarEventos() {
       this.reset();
 
       if (usuario.rol === 'administrador') {
-        window.location.replace('admin.html');
-        } else {
-        window.location.replace('index.html');
-        }
+        irA('admin.html');
+      } else {
+        irA('index.html');
+      }
     });
   }
 
