@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrador | UniPedidos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-pagina="admin">
+  <div class="layout-admin">
+    <aside class="sidebar-admin">
+      <div class="marca-admin">
+        <div class="logo-nav">UP</div>
+        <div>
+          <strong>UniPedidos</strong>
+          <span>Administrador</span>
+        </div>
+      </div>
+
+      <nav class="menu-admin">
+        <a href="#inicio-admin">Inicio</a>
+        <a href="#productos-admin">Productos</a>
+        <a href="#pedidos-admin">Pedidos</a>
+        <a href="#resenas-admin">Reseñas</a>
+      </nav>
+
+      <div class="usuario-sidebar">
+        <strong>Sesión activa</strong>
+        <p id="textoSesion">No has iniciado sesión.</p>
+        <p id="textoRol"></p>
+      </div>
+
+      <button id="botonCerrarSesion" class="btn-salir btn-ancho">Cerrar sesión</button>
+    </aside>
+
+    <main class="contenido-admin">
+      <section id="inicio-admin" class="encabezado-admin">
+        <div>
+          <span class="mini-etiqueta">Panel administrativo</span>
+          <h1>Gestión del sistema</h1>
+          <p>Administra productos, pedidos, estados y reseñas del servicio.</p>
+        </div>
+      </section>
+
+      <section class="metricas-lineales metricas-admin">
+        <div>
+          <span>Pedidos pendientes</span>
+          <strong id="metricaPendientesAdmin">0</strong>
+        </div>
+
+        <div>
+          <span>Pedidos entregados</span>
+          <strong id="metricaEntregadosAdmin">0</strong>
+        </div>
+
+        <div>
+          <span>Productos activos</span>
+          <strong id="metricaProductosActivosAdmin">0</strong>
+        </div>
+
+        <div>
+          <span>Clientes registrados</span>
+          <strong id="metricaClientesAdmin">0</strong>
+        </div>
+      </section>
+
+      <section id="productos-admin" class="seccion-admin">
+        <div class="titulo-bloque">
+          <div>
+            <h2>Productos</h2>
+            <p>Registra, edita, elimina o reactiva productos del catálogo.</p>
+          </div>
+        </div>
+
+        <div class="zona-productos-admin">
+          <form id="formularioProducto" class="formulario-admin">
+            <input type="hidden" id="idProductoEditar">
+
+            <h3>Formulario de producto</h3>
+
+            <div class="grupo-campo">
+              <label>Nombre del producto</label>
+              <input type="text" class="campo" id="nombreProducto" placeholder="Ejemplo: Galletas de avena" required>
+            </div>
+
+            <div class="grupo-campo">
+              <label>Descripción</label>
+              <textarea class="area-texto" id="descripcionProducto" rows="3" placeholder="Descripción del producto" required></textarea>
+            </div>
+
+            <div class="grupo-campo">
+              <label>Precio</label>
+              <input type="number" class="campo" id="precioProducto" step="0.01" min="1" placeholder="Ejemplo: 15.99" required>
+            </div>
+
+            <div class="grupo-campo">
+              <label>Categoría</label>
+              <input type="text" class="campo" id="categoriaProducto" placeholder="Ejemplo: Postres" required>
+            </div>
+
+            <div class="grupo-campo">
+              <label>URL de imagen</label>
+              <input type="text" class="campo" id="imagenProducto" placeholder="https://example.com/imagen.jpg" required>
+            </div>
+
+            <div class="acciones">
+              <button type="submit" class="btn btn-primario">Guardar</button>
+              <button type="button" class="btn btn-secundario" id="botonCancelarEdicion">Cancelar</button>
+            </div>
+
+            <div class="mensaje" id="mensajeProducto"></div>
+          </form>
+
+          <div class="panel-catalogo-admin">
+            <div class="subtitulo-panel">
+              <h3>Catálogo registrado</h3>
+              <p>Vista visual con paginación de 4 productos.</p>
+            </div>
+
+            <div class="grid-productos-admin" id="contenedorProductosAdmin"></div>
+            <div class="paginacion-admin" id="paginacionProductosAdmin"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="pedidos-admin" class="seccion-admin">
+        <div class="titulo-bloque">
+          <div>
+            <h2>Pedidos del sistema</h2>
+            <p>Consulta los pedidos realizados y actualiza su estado.</p>
+          </div>
+        </div>
+
+        <div class="tabla-simple tabla-elegante">
+          <table>
+            <thead>
+              <tr>
+                <th>Folio</th>
+                <th>Cliente</th>
+                <th>Total</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody id="tablaPedidosAdmin"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="resenas-admin" class="seccion-admin">
+        <div class="titulo-bloque">
+          <div>
+            <h2>Reseñas de clientes</h2>
+            <p>Comentarios y calificaciones realizados por los clientes.</p>
+          </div>
+        </div>
+
+        <div class="grid-resenas-admin" id="listaResenasAdmin"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

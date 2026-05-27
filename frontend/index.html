@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cliente | UniPedidos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-pagina="cliente">
+  <header class="barra-app">
+    <div class="marca-app">
+      <div class="logo-nav">UP</div>
+      <div>
+        <strong>UniPedidos</strong>
+        <span>Panel del cliente</span>
+      </div>
+    </div>
+
+    <nav class="nav-app">
+      <a href="#menu">Menú</a>
+      <a href="#historial">Historial</a>
+      <button id="botonCerrarSesion" class="btn-salir">Cerrar sesión</button>
+    </nav>
+  </header>
+
+  <main class="layout-cliente">
+    <section class="area-principal-cliente">
+      <section class="encabezado-pagina">
+        <div>
+          <span class="mini-etiqueta">Pedidos digitales</span>
+          <h1>Haz tu pedido dentro del campus</h1>
+          <p>Explora el menú, agrega productos al carrito y confirma tu entrega sin hacer fila.</p>
+        </div>
+
+        <div class="info-sesion">
+          <strong>Sesión activa</strong>
+          <p id="textoSesion">No has iniciado sesión.</p>
+          <p id="textoRol"></p>
+        </div>
+      </section>
+
+      <section class="metricas-lineales metricas-cliente">
+        <div>
+          <span>Productos en carrito</span>
+          <strong id="metricaCarrito">0</strong>
+        </div>
+
+        <div>
+          <span>Mis pedidos</span>
+          <strong id="metricaMisPedidos">0</strong>
+        </div>
+
+        <div>
+          <span>Pedidos entregados</span>
+          <strong id="metricaEntregados">0</strong>
+        </div>
+      </section>
+
+      <section id="menu" class="bloque-limpio">
+        <div class="titulo-bloque">
+          <div>
+            <h2>Menú disponible</h2>
+            <p>Busca, filtra y selecciona los productos que deseas pedir.</p>
+          </div>
+        </div>
+
+        <div class="barra-filtros">
+          <input type="text" class="campo" id="buscarProducto" placeholder="Buscar producto por nombre">
+
+          <select class="selector" id="filtrarCategoria"></select>
+
+          <select class="selector" id="ordenarProductos">
+            <option value="normal">Ordenar por</option>
+            <option value="menor">Precio menor</option>
+            <option value="mayor">Precio mayor</option>
+            <option value="calificacion">Mejor calificación</option>
+          </select>
+        </div>
+
+        <div class="catalogo-productos" id="listaProductos"></div>
+
+        <div class="pie-listado-productos">
+          <span id="contadorProductosCliente"></span>
+          <div class="paginacion-productos" id="paginacionProductosCliente"></div>
+        </div>
+      </section>
+
+      <section id="historial" class="bloque-limpio">
+        <div class="titulo-bloque">
+          <div>
+            <h2>Historial de pedidos</h2>
+            <p>Consulta tus pedidos anteriores, estados y valoraciones.</p>
+          </div>
+        </div>
+
+        <div id="listaHistorial" class="lista-historial"></div>
+      </section>
+    </section>
+
+    <aside class="carrito-lateral">
+      <div class="carrito-header">
+        <span class="mini-etiqueta">Pedido actual</span>
+        <h2>Tu carrito</h2>
+        <p>Revisa tu pedido antes de confirmar.</p>
+      </div>
+
+      <div class="lista-carrito" id="listaCarrito"></div>
+
+      <div class="total-carrito">
+        <span>Total</span>
+        <strong id="textoTotal">$0.00</strong>
+      </div>
+
+      <div class="grupo-campo">
+        <label>Ubicación de entrega</label>
+        <select id="ubicacionPedido" class="selector">
+          <option value="">Selecciona una ubicación</option>
+          <option>Aula 1</option>
+          <option>Aula 2</option>
+          <option>Aula 3</option>
+          <option>Biblioteca</option>
+          <option>Laboratorio de Cómputo</option>
+          <option>Edificio Administrativo</option>
+          <option>Explanada Principal</option>
+          <option>Cancha</option>
+          <option>Estacionamiento</option>
+          <option>Centro de Idiomas</option>
+          <option>Otra ubicación</option>
+        </select>
+      </div>
+
+      <div class="grupo-campo oculto" id="grupoOtraUbicacion">
+        <label>Especifica la ubicación</label>
+        <input type="text" class="campo" id="otraUbicacionPedido" placeholder="Ejemplo: Aula 4, junto a la entrada">
+      </div>
+
+      <div class="grupo-campo">
+        <label>Notas del pedido</label>
+        <textarea class="area-texto" id="notasPedido" rows="3" placeholder="Ejemplo: Entregar en la entrada principal"></textarea>
+      </div>
+
+      <button class="btn btn-primario btn-ancho" id="botonConfirmarPedido">Confirmar pedido</button>
+      <button class="btn btn-secundario btn-ancho" id="botonVaciarCarrito">Vaciar carrito</button>
+
+      <div class="mensaje" id="mensajePedido"></div>
+    </aside>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+# Dependencias de Node
+backend/node_modules/
+
+# Package-lock.json
+package-lock.json
+
+# Base de datos local SQLite
+backend/database/unipedidos.db
+
